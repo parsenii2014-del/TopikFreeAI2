@@ -1,0 +1,23 @@
+
+services:
+  - type: web
+    name: topikfreeai2
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: FREEAI_API_KEYS
+        sync: false
+      - key: UPSTREAM_BASE_URL
+        sync: false
+      - key: UPSTREAM_API_KEY
+        sync: false
+      - key: MEMORY_DIR
+        value: /tmp/freeai-memory
+      - key: MAX_AGENT_STEPS
+        value: "6"
